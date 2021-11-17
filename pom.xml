@@ -214,7 +214,9 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-tcnative</artifactId>
-            <version>2.0.43.Final</version>
+            <!--<version>2.0.43.Final</version>-->
+            <!-- netty-tcnative 在2.0.36 版本之后就没有了windows 版本，Windows 本地编译需要修改版本 -->
+            <version>2.0.36.Final</version>
             <classifier>${os.detected.classifier}</classifier>
             <optional>true</optional>
         </dependency>
@@ -1127,7 +1129,22 @@
                                     <goal>run</goal>
                                 </goals>
                             </execution>
-
+                            <!--<execution>
+                                <phase>initialize</phase>
+                                <configuration>
+                                    <exportAntProperties>true</exportAntProperties>
+                                    <target>
+                                        <condition property="tcnative.classifier"
+                                                   value="${os.detected.classifier}-fedora"
+                                                   else="${os.detected.classifier}">
+                                            <isset property="os.detected.release.fedora"/>
+                                        </condition>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>-->
                         </executions>
                     </plugin>
 
